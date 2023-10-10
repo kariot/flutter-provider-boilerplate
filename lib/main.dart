@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider_template/di/injection.dart';
+import 'package:provider_template/navigation/app_routes.dart';
+import 'package:provider_template/navigation/route_constants.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  configureDependencies();
   runApp(const MainApp());
 }
 
@@ -9,12 +14,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return MaterialApp(
+      routes: appRoutes,
+      initialRoute: RouteConstansts.root,
     );
   }
 }
