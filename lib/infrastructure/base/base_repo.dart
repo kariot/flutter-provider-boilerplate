@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:provider_template/commons/shared_pref.dart';
+import 'package:provider_template/commons/shared_pref/shared_pref.dart';
 import 'package:provider_template/domain/api_failure.dart';
 
 mixin BaseRepo {
