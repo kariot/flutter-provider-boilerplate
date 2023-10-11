@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 import 'package:provider_template/domain/api_failure.dart';
 import 'package:provider_template/domain/auth/login_response/login_response.dart';
 import 'package:provider_template/presentation/common/common_widget_props.dart';
@@ -22,9 +23,16 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController(text: '0lelplR');
   @override
   void initState() {
-    provider = GetIt.instance.get<AuthProvider>();
-    provider.loginUser('', '');
+    provider = Provider.of<AuthProvider>(context, listen: false);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _usernameController.dispose();
+    provider.disposeValues();
+    super.dispose();
   }
 
   @override
@@ -68,7 +76,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         decoration: getInputDecoration('Enter you password'),
                       ),
                       vSpacer20,
-                      PrimaryButton(onPressed: _onPressSignIn, title: 'Sign in')
+                      Consumer<AuthProvider>(
+                          builder: (context, value, child) => PrimaryButton(
+                              isLoading: value.isAuthRequesting,
+                              onPressed: _onPressSignIn,
+                              title: 'Sign in'))
                     ],
                   ),
                 ),

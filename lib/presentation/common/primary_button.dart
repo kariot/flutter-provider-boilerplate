@@ -21,30 +21,17 @@ class PrimaryButton extends StatelessWidget {
     return ElevatedButton(
       style: roundedButtonStyle,
       onPressed: isLoading ? () {} : onPressed,
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
+      child: isLoading
+          ? const SizedBox(
+              height: 16,
+              width: 16,
+              child: CircularProgressIndicator(
+                color: Colors.white,
+              ))
+          : Text(
               title,
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white, fontSize: 16),
             ),
-            if (isLoading || trailingIcon != null) ...[hSpacer],
-            //if loading, shows the loader. else check if there is a traling icon, if so it will be shown
-            isLoading
-                ? const SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                    ))
-                : trailingIcon != null
-                    ? trailingIcon!
-                    : const SizedBox(),
-          ],
-        ),
-      ),
     );
   }
 }
