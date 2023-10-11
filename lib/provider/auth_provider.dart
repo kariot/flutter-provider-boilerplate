@@ -15,7 +15,7 @@ class AuthProvider extends ChangeNotifier {
     required this.sharedPref,
   });
   Future<Either<ApiFailure, LoginResponse>> loginUser(
-      String username, String password) {
-    throw UnimplementedError();
+      String username, String password) async {
+    return const Left(ApiFailure.clientError(message: ''));
   }
 }

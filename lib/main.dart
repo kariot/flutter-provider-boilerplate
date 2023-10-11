@@ -11,8 +11,7 @@ void main() {
   configureDependencies();
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(
-          create: (context) => GetIt.instance.get<AuthProvider>())
+      ChangeNotifierProvider(create: (context) => getIt<AuthProvider>())
     ],
     child: const MainApp(),
   ));
