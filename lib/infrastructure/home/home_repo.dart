@@ -8,10 +8,11 @@ import 'package:provider_template/products_reponse_model/products_reponse_model.
 
 @Injectable(as: IHomeRepo)
 class HomeRepo extends IHomeRepo with BaseRepo {
-  int limit = 30;
   @override
-  Future<Either<ApiFailure, ProductsReponseModel>> getProducts(int page) async {
-    final url = '${ApiConstants.productsUrl}?skip=${page * limit}&limit=$limit';
+  Future<Either<ApiFailure, ProductsReponseModel>> getProducts(
+      int page, int pageSize) async {
+    final url =
+        '${ApiConstants.productsUrl}?skip=${page * pageSize}&limit=$pageSize';
     return super.get(
         url,
         (p0) => ProductsReponseModel.fromJson(p0 as Map<String, dynamic>),

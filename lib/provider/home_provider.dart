@@ -8,12 +8,13 @@ import 'package:provider_template/provider/utils/disposable_provider.dart';
 @injectable
 class HomeProvider extends DisposableProvider {
   IHomeRepo homeRepo;
+  int PAGE_SIZE = 30;
 
   HomeProvider({required this.homeRepo});
 
   Future<Either<ApiFailure, ProductsReponseModel>> getProducts(
       int pageKey) async {
-    return await homeRepo.getProducts(pageKey);
+    return await homeRepo.getProducts(pageKey, PAGE_SIZE);
   }
 
   @override

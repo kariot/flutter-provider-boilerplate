@@ -3,6 +3,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_template/domain/api_failure.dart';
 import 'package:provider_template/presentation/common/common_widget_props.dart';
+import 'package:provider_template/presentation/home/widgets/widget_product_list_item.dart';
 import 'package:provider_template/products_reponse_model/product.dart';
 import 'package:provider_template/products_reponse_model/products_reponse_model.dart';
 import 'package:provider_template/provider/home_provider.dart';
@@ -37,11 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
       ),
       body: PagedListView.separated(
+        padding: const EdgeInsets.all(12),
         pagingController: _pagingController,
         builderDelegate: PagedChildBuilderDelegate<Product>(
           itemBuilder: (context, item, index) => ProductListItem(product: item),
         ),
-        separatorBuilder: (context, index) => vSpacer20,
+        separatorBuilder: (context, index) => const Divider(),
       ),
     ));
   }
@@ -58,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   handlePageResult(ProductsReponseModel r, int pageKey) {
-    final isLastPage = pageKey >= (r.total ?? 0);
+    final isLastPage = pageKey * (provider?.PAGE_SIZE ?? 30) >= (r.total ?? 0);
     if (isLastPage) {
       _pagingController.appendLastPage(r.products ?? []);
     } else {
@@ -66,18 +68,5 @@ class _HomeScreenState extends State<HomeScreen> {
       debugPrint('<>nextPageKey : $nextPageKey');
       _pagingController.appendPage(r.products ?? [], nextPageKey);
     }
-  }
-}
-
-class ProductListItem extends StatelessWidget {
-  final Product product;
-  const ProductListItem({super.key, required this.product});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(product.title ?? ''),
-      subtitle: Text(product.description ?? ''),
-    );
   }
 }
