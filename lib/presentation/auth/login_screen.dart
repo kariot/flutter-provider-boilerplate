@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_template/domain/api_failure.dart';
 import 'package:provider_template/domain/auth/login_response/login_response.dart';
+import 'package:provider_template/navigation/route_constants.dart';
 import 'package:provider_template/presentation/common/common_widget_props.dart';
 import 'package:provider_template/presentation/common/primary_button.dart';
 import 'package:provider_template/presentation/common/snackbar_utils.dart';
@@ -104,5 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   _handleAuthFailure(ApiFailure l) => showErrorSnack(context, l.message);
 
-  _handleAuthSuccess(LoginResponse r) {}
+  _handleAuthSuccess(LoginResponse r) {
+    Navigator.of(context).pushReplacementNamed(RouteConstansts.home);
+  }
 }

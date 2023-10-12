@@ -8,7 +8,7 @@ import 'package:provider_template/infrastructure/auth/i_auth_repo.dart';
 import 'package:provider_template/provider/utils/disposable_provider.dart';
 
 @injectable
-class AuthProvider extends ChangeNotifier {
+class AuthProvider extends DisposableProvider {
   IAuthRepo repo;
   ISharedPref sharedPref;
   bool isAuthRequesting = false;
@@ -26,6 +26,7 @@ class AuthProvider extends ChangeNotifier {
     return response;
   }
 
+  @override
   void disposeValues() {
     isAuthRequesting = false;
   }
