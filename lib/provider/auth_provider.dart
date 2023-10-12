@@ -5,7 +5,6 @@ import 'package:provider_template/commons/shared_pref/i_shared_pref.dart';
 import 'package:provider_template/domain/api_failure.dart';
 import 'package:provider_template/domain/auth/login_response/login_response.dart';
 import 'package:provider_template/infrastructure/auth/i_auth_repo.dart';
-import 'package:provider_template/provider/utils/disposable_provider.dart';
 
 @injectable
 class AuthProvider extends ChangeNotifier {

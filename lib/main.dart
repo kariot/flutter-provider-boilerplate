@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_template/di/injection.dart';
 import 'package:provider_template/navigation/app_routes.dart';
