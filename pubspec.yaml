@@ -33,7 +33,6 @@ dev_dependencies:
     sdk: flutter
   mocktail: ^1.0.1
   injectable_generator: ^2.4.0
-  husky: ^0.1.6
 
 flutter:
   uses-material-design: true

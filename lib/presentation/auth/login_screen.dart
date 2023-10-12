@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_template/domain/api_failure.dart';
 import 'package:provider_template/domain/auth/login_response/login_response.dart';

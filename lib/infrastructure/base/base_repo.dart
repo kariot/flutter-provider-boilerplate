@@ -1,5 +1,3 @@
-// ignore_for_file: constant_identifier_names
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -64,11 +62,11 @@ mixin BaseRepo {
       dynamic body,
       E Function(Object?) fromJsonE,
       String Function(Map<String, dynamic>?) readAPIError,
-      Map<String, String>? header,
+      Map<String, String>? _header,
       RequestType type) async {
     debugPrint('Requesting to $url');
     debugPrint('Request body ${body.toString()}');
-    header = header ?? await _getHeader();
+    final header = _header ?? await _getHeader();
     try {
       var response = switch (type) {
         RequestType.GET => await http.get(Uri.parse(url), headers: header),
