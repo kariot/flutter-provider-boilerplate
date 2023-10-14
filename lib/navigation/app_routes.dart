@@ -10,6 +10,7 @@ class AppRoutes {
       RouteConstansts.home => const HomeScreen(),
       _ => throw Exception('Invalid route')
     };
+    debugPrint('<>route ${settings.name}');
     return MaterialPageRoute(
       builder: (context) => page,
     );

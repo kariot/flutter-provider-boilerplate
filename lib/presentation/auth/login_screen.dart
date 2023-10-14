@@ -26,7 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     provider = Provider.of<AuthProvider>(context, listen: false);
-    checkUserSession();
     super.initState();
   }
 
@@ -43,6 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Container(
       color: Colors.blue,
       child: SafeArea(
+        bottom: false,
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
@@ -109,15 +109,5 @@ class _LoginScreenState extends State<LoginScreen> {
 
   _handleAuthSuccess(LoginResponse r) {
     Navigator.of(context).pushReplacementNamed(RouteConstansts.home);
-  }
-
-  void checkUserSession() {
-    provider.sharedPref.getLoginData().then(
-      (value) {
-        if (value != null && (value.token ?? '').isNotEmpty) {
-          Navigator.of(context).pushReplacementNamed(RouteConstansts.home);
-        }
-      },
-    );
   }
 }

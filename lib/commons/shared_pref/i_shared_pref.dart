@@ -4,4 +4,5 @@ abstract class ISharedPref {
   Future<String> getAccessToken();
   Future<void> saveLoginData(LoginResponse data);
   Future<LoginResponse?> getLoginData();
+  Future<void> clear();
 }

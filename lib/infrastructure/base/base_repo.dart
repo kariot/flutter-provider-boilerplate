@@ -4,7 +4,9 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider_template/commons/shared_pref/i_shared_pref.dart';
 import 'package:provider_template/commons/shared_pref/shared_pref.dart';
+import 'package:provider_template/di/injection.dart';
 import 'package:provider_template/domain/api_failure.dart';
 
 mixin BaseRepo {
@@ -49,7 +51,7 @@ mixin BaseRepo {
   }
 
   Future<Map<String, String>> _getHeader() async {
-    final token = await SharedPref().getAccessToken();
+    final token = await getIt<ISharedPref>().getAccessToken();
     Map<String, String> map = {'content-type': 'application/json'};
     if (token.isNotEmpty) {
       map['Authorization'] = 'Bearer $token';

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_template/commons/shared_pref/i_shared_pref.dart';
+import 'package:provider_template/di/injection.dart';
 import 'package:provider_template/domain/api_failure.dart';
+import 'package:provider_template/navigation/route_constants.dart';
+import 'package:provider_template/presentation/auth/login_screen.dart';
 import 'package:provider_template/presentation/home/widgets/widget_product_list_item.dart';
 import 'package:provider_template/products_reponse_model/product.dart';
 import 'package:provider_template/products_reponse_model/products_reponse_model.dart';
@@ -30,21 +34,30 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      appBar: AppBar(
-        title: const Text('Articles'),
-        centerTitle: true,
-      ),
-      body: PagedListView.separated(
-        padding: const EdgeInsets.all(12),
-        pagingController: _pagingController,
-        builderDelegate: PagedChildBuilderDelegate<Product>(
-          itemBuilder: (context, item, index) => ProductListItem(product: item),
-        ),
-        separatorBuilder: (context, index) => const Divider(),
-      ),
-    ));
+    return Container(
+      color: Colors.blue,
+      child: SafeArea(
+          bottom: false,
+          child: Scaffold(
+            appBar: AppBar(
+              title: const Text('Articles'),
+              centerTitle: true,
+              actions: [
+                IconButton(
+                    onPressed: _onPressLogout, icon: const Icon(Icons.logout)),
+              ],
+            ),
+            body: PagedListView.separated(
+              padding: const EdgeInsets.all(12),
+              pagingController: _pagingController,
+              builderDelegate: PagedChildBuilderDelegate<Product>(
+                itemBuilder: (context, item, index) =>
+                    ProductListItem(product: item),
+              ),
+              separatorBuilder: (context, index) => const Divider(),
+            ),
+          )),
+    );
   }
 
   Future<void> _fetchPage(int pageKey) async {
@@ -67,5 +80,12 @@ class _HomeScreenState extends State<HomeScreen> {
       debugPrint('<>nextPageKey : $nextPageKey');
       _pagingController.appendPage(r.products ?? [], nextPageKey);
     }
+  }
+
+  void _onPressLogout() {
+    getIt<ISharedPref>().clear().then((value) => Navigator.of(context)
+        .pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const LoginScreen()),
+            (Route<dynamic> route) => false));
   }
 }
