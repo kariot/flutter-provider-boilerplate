@@ -26,8 +26,8 @@ This project uses the tools and practices to demonstrate user authentication and
 ### Screens
 <table>
   <tr>
-     <td>Start</td>
-     <td>Questionnaire List</td>
+     <td>Login</td>
+     <td>Listing</td>
   </tr>
   <tr>
     <td><img src="screenshots/sc_1.png" width=270 height=585></td>
