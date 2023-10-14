@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_template/domain/api_failure.dart';
-import 'package:provider_template/presentation/common/common_widget_props.dart';
 import 'package:provider_template/presentation/home/widgets/widget_product_list_item.dart';
 import 'package:provider_template/products_reponse_model/product.dart';
 import 'package:provider_template/products_reponse_model/products_reponse_model.dart';

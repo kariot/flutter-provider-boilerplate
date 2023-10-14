@@ -10,7 +10,7 @@ class ProductListItem extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: [
-        Container(
+        SizedBox(
           width: 100,
           height: 100,
           child: Image.network(
