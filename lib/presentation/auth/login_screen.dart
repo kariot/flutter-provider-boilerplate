@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_template/domain/api_failure.dart';
 import 'package:provider_template/domain/auth/login_response/login_response.dart';
+import 'package:provider_template/navigation/app_routes.dart';
 import 'package:provider_template/navigation/route_constants.dart';
 import 'package:provider_template/presentation/common/common_widget_props.dart';
 import 'package:provider_template/presentation/common/primary_button.dart';
@@ -25,6 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     provider = Provider.of<AuthProvider>(context, listen: false);
+    checkUserSession();
     super.initState();
   }
 
@@ -107,5 +109,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   _handleAuthSuccess(LoginResponse r) {
     Navigator.of(context).pushReplacementNamed(RouteConstansts.home);
+  }
+
+  void checkUserSession() {
+    provider.sharedPref.getLoginData().then(
+      (value) {
+        if (value != null && (value.token ?? '').isNotEmpty) {
+          Navigator.of(context).pushReplacementNamed(RouteConstansts.home);
+        }
+      },
+    );
   }
 }

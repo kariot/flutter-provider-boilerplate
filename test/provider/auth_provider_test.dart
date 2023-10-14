@@ -21,16 +21,25 @@ void main() {
     mockSharedPref = MockSharedPref();
     authProvider = AuthProvider(repo: mockAuthRepo, sharedPref: mockSharedPref);
   });
+  test('initial values are correct', () {
+    expect(authProvider.isAuthRequesting, false);
+  });
 
-  test('loginUser returns a LoginResponse on success', () async {
+  test(
+      'given username and password then success response is given when auth is success',
+      () async {
     // Arrange
     const username = 'testuser';
     const password = 'testpassword';
-    final loginResponse =
-        LoginResponse(/* initialize with required properties */);
+    final loginResponse = LoginResponse();
 
     when(() => mockAuthRepo.signInUser(username, password))
         .thenAnswer((_) async => Right(loginResponse));
+    when(
+      () => mockSharedPref.saveLoginData(loginResponse),
+    ).thenAnswer((invocation) async {
+      return;
+    });
 
     // Act
     final result = await authProvider.loginUser(username, password);
@@ -38,6 +47,7 @@ void main() {
     // Assert
     expect(result, Right(loginResponse));
     verify(() => mockAuthRepo.signInUser(username, password)).called(1);
+    verify(() => mockSharedPref.saveLoginData(loginResponse)).called(1);
     verifyNoMoreInteractions(mockAuthRepo);
   });
 

@@ -21,6 +21,9 @@ class AuthProvider extends DisposableProvider {
     isAuthRequesting = true;
     notifyListeners();
     final response = await repo.signInUser(username, password);
+    if (response.isRight()) {
+      response.fold((l) => null, (r) => sharedPref.saveLoginData(r));
+    }
     isAuthRequesting = false;
     notifyListeners();
     return response;
