@@ -2,7 +2,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 
 @module
-abstract class SharedPredModules {
+abstract class SharedPrefModules {
   @singleton
   FlutterSecureStorage get secureStorage {
     AndroidOptions getAndroidOptions() => const AndroidOptions(

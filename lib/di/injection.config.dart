@@ -33,8 +33,8 @@ extension GetItInjectableX on _i1.GetIt {
       environment,
       environmentFilter,
     );
-    final sharedPredModules = _$SharedPredModules();
-    gh.singleton<_i3.FlutterSecureStorage>(sharedPredModules.secureStorage);
+    final sharedPrefModules = _$SharedPrefModules();
+    gh.singleton<_i3.FlutterSecureStorage>(sharedPrefModules.secureStorage);
     gh.factory<_i4.IAuthRepo>(() => _i5.AuthRepo());
     gh.factory<_i6.IHomeRepo>(() => _i7.HomeRepo());
     gh.factory<_i8.ISharedPref>(
@@ -49,4 +49,4 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$SharedPredModules extends _i12.SharedPredModules {}
+class _$SharedPrefModules extends _i12.SharedPrefModules {}

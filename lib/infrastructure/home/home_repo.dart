@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:provider_template/domain/api_failure.dart';
+import 'package:provider_template/domain/products/products_reponse_model/products_reponse_model.dart';
 import 'package:provider_template/infrastructure/api_constants.dart';
 import 'package:provider_template/infrastructure/base/base_repo.dart';
 import 'package:provider_template/infrastructure/home/i_home_repo.dart';
-import 'package:provider_template/products_reponse_model/products_reponse_model.dart';
 
 @Injectable(as: IHomeRepo)
 class HomeRepo extends IHomeRepo with BaseRepo {

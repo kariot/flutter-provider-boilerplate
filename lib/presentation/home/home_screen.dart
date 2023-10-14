@@ -4,11 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:provider_template/commons/shared_pref/i_shared_pref.dart';
 import 'package:provider_template/di/injection.dart';
 import 'package:provider_template/domain/api_failure.dart';
-import 'package:provider_template/navigation/route_constants.dart';
+import 'package:provider_template/domain/products/products_reponse_model/product.dart';
+import 'package:provider_template/domain/products/products_reponse_model/products_reponse_model.dart';
 import 'package:provider_template/presentation/auth/login_screen.dart';
 import 'package:provider_template/presentation/home/widgets/widget_product_list_item.dart';
-import 'package:provider_template/products_reponse_model/product.dart';
-import 'package:provider_template/products_reponse_model/products_reponse_model.dart';
 import 'package:provider_template/provider/home_provider.dart';
 
 class HomeScreen extends StatefulWidget {
