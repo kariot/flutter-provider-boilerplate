@@ -15,7 +15,7 @@
 10. mocktail : dev dependency
 
 ### Project details
-This project uses the tools and practices to demonstrate user authentication and a paginated list using sample APIs provided by https://dummyjson.com/
+This project uses the following tools and practices to demonstrate user authentication and a paginated list using sample APIs provided by https://dummyjson.com/
 1. Provider
 2. API calls with http
 3. Unit tests
