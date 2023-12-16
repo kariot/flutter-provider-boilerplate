@@ -5,9 +5,10 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider_template/commons/shared_pref/i_shared_pref.dart';
-import 'package:provider_template/commons/shared_pref/shared_pref.dart';
 import 'package:provider_template/di/injection.dart';
 import 'package:provider_template/domain/api_failure.dart';
+import 'package:provider_template/navigation/navigation_utils.dart';
+import 'package:provider_template/navigation/route_constants.dart';
 
 mixin BaseRepo {
   Future<Either<ApiFailure, E>> post<E>(
@@ -86,6 +87,10 @@ mixin BaseRepo {
       if (response.statusCode == 200 || response.statusCode == 201) {
         final responseObj = fromJsonE(decodedJson);
         return Right(responseObj);
+      } else if (response.statusCode == 401) {
+        NavigationUtils.navKey.currentState
+            ?.pushNamedAndRemoveUntil(RouteConstansts.root, (route) => false);
+        return const Left(ApiFailure.serverError(message: 'Session expired'));
       } else {
         return Left(ApiFailure.serverError(message: readAPIError(decodedJson)));
       }

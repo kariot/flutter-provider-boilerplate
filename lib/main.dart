@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:provider_template/commons/shared_pref/i_shared_pref.dart';
 import 'package:provider_template/di/injection.dart';
 import 'package:provider_template/navigation/app_routes.dart';
+import 'package:provider_template/navigation/navigation_utils.dart';
 import 'package:provider_template/navigation/route_constants.dart';
 import 'package:provider_template/provider/auth_provider.dart';
 import 'package:provider_template/provider/home_provider.dart';
@@ -32,6 +33,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      navigatorKey: NavigationUtils.navKey,
       onGenerateRoute: AppRoutes.generateRoute,
       initialRoute: initialRoute,
     );

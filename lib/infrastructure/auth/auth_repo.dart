@@ -10,7 +10,7 @@ import 'package:provider_template/infrastructure/base/base_repo.dart';
 class AuthRepo extends IAuthRepo with BaseRepo {
   @override
   Future<Either<ApiFailure, LoginResponse>> signInUser(
-      String username, String password) {
+      String username, String password) async {
     const url = ApiConstants.loginUrl;
     return super.post(
         url,
